@@ -6,6 +6,7 @@ import com.example.userportal.entity.User;
 import com.example.userportal.repository.RoleRepository;
 import com.example.userportal.repository.UserRepository;
 import com.example.userportal.service.IUserService;
+import com.example.userportal.util.BirthDateUtil;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -73,6 +74,7 @@ public class IUserServiceImpl implements IUserService {
         userDto.setPhone(user.getPhone());
         userDto.setBirthDate(user.getBirthDate());
         userDto.setAddress(user.getAddress());
+        userDto.setAge(BirthDateUtil.calculateAge(userDto.getBirthDate()));
         return userDto;
     }
 }

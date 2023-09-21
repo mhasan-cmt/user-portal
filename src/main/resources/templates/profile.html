@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout}">
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row col-md-8 offset-md-2">
+        <div class="card">
+            <div th:if="${param.success}">
+                <div class="alert alert-info">Edited Successfully!</div>
+            </div>
+            <div class="card-header">
+                <h2 class="text-center h5 text-dark">User Profile</h2>
+            </div>
+            <div class="card-body">
+                <form method="post" role="form" th:object="${user}">
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">First Name <span style="color: crimson">*</span></label>
+                        <input class="form-control"
+                               id="firstName"
+                               name="firstName"
+                               required
+                               th:field="*{firstName}"
+                               readonly
+                               type="text"
+                        />
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Last Name <span style="color: crimson">*</span></label>
+                        <input class="form-control"
+                               id="lastName"
+                               name="lastName"
+                               required
+                               th:field="*{lastName}"
+                               readonly
+                               type="text"
+                        />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Address<span style="color: crimson">*</span></label>
+                        <input class="form-control"
+                               id="address"
+                               name="address"
+                               required
+                               th:field="*{address}"
+                               readonly
+                               type="text"
+                        />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Email <span style="color: crimson">*</span></label>
+                        <input class="form-control"
+                               id="email"
+                               name="email"
+                               th:field="*{email}"
+                               readonly
+                               type="email"
+                        />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Birth Date <span style="color: crimson">*</span></label>
+                        <input class="form-control"
+                               id="birthDate"
+                               name="birthDate"
+                               th:value="*{birthDate}"
+                               readonly
+                               type="date"
+                        />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="form-label" for="phone">Phone <span style="color: crimson">*</span></label>
+                        <input class="form-control"
+                               id="phone"
+                               name="phone"
+                               th:field="*{phone}"
+                               required
+                               readonly
+                               type="tel"
+                        />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

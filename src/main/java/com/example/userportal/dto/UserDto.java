@@ -33,4 +33,5 @@ public class UserDto
     @NotEmpty(message = "Please enter your Phone Number")
     private String phone;
     private String confirmPassword;
+    private int age;
 }

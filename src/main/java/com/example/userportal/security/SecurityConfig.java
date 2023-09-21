@@ -49,7 +49,8 @@ public class SecurityConfig {
                         authorize.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/").permitAll()
                                 .requestMatchers(userURLs).hasRole("USER")
-                                .requestMatchers("/edit").authenticated()
+                                .requestMatchers("/users").hasRole("ADMIN")
+                                .requestMatchers("/profile").authenticated()
 
                 ).formLogin(
                         form -> form

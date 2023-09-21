@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @AllArgsConstructor
@@ -60,30 +61,15 @@ public class AuthController {
         return "redirect:/register?success";
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/profile")
     public String editUser(Authentication authentication, Model model) {
         User user = userService.findByEmail(authentication.getName());
         model.addAttribute("user", userService.convertEntityToDto(user));
-        return "edit";
+        return "profile";
     }
-
-    @PostMapping("/edit")
-    public String editUser(@Valid @ModelAttribute("user") UserDto user,
-                           BindingResult result,
-                           Model model) {
-        User existing = userService.findByEmail(user.getEmail());
-        if (existing != null) {
-            existing.setPhone(user.getPhone());
-            existing.setFirstName(user.getFirstName());
-            existing.setLastName(user.getLastName());
-            userService.update(existing);
-        }else{
-            result.rejectValue("email", null, "There is no account registered with that email");
-        }
-        if (result.hasErrors()) {
-            model.addAttribute("user", user);
-            return "edit";
-        }
-        return "redirect:/edit?success";
+    @GetMapping("/users")
+    public String findAllUsers(Model model) {
+        model.addAttribute("users", userService.findAllUsers());
+       return "users-list";
     }
 }

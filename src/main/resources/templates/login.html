@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
-      layout:decorate="~{layout}">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>STU - Service To You</title>
+    <link rel="stylesheet"
+          th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css/}"/>
+    <link rel="stylesheet"
+          th:href="@{/webjars/font-awesome/6.2.0/css/all.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/datatables/1.10.19/css/jquery.dataTables.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+</head>
 <body>
-<div layout:fragment="content">
+<div class="row my-5">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div th:if="${param.error}">
@@ -24,22 +32,26 @@
                             role="form"
                     >
                         <div class="mb-3">
-                            <label for="username" class="control-label">Email <span style="color: crimson">*</span></label>
+                            <label for="username" class="control-label">Email <span
+                                    style="color: crimson">*</span></label>
                             <input type="text"
                                    id="username"
                                    name="username"
                                    class="form-control"
                                    placeholder="Email"
+                                   required
                             />
                         </div>
 
                         <div class="mb-3">
-                            <label for="password" class="control-label">Password <span style="color: crimson">*</span></label>
+                            <label for="password" class="control-label">Password <span
+                                    style="color: crimson">*</span></label>
                             <input type="password"
                                    id="password"
                                    name="password"
                                    class="form-control"
                                    placeholder="Password"
+                                   required
                             />
                         </div>
 
@@ -55,5 +67,17 @@
         </div>
     </div>
 </div>
+<footer>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col">
+                <p class="text-right">&copy;User Portal</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/jquery/3.6.4/jquery.min.js}"></script>
+<script th:src="@{/webjars/datatables/1.10.19/js/jquery.dataTables.min.js}"></script>
 </body>
 </html>
