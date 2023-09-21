@@ -1,0 +1,30 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px; /* Adjust the width as needed */
+    background-color: #333; /* Sidebar background color */
+    color: #fff; /* Sidebar text color */
+    padding-top: 60px; /* Space for the top navigation */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Adjust the main content to accommodate the sidebar */
+.main-content {
+    margin-left: 250px; /* Width of the sidebar */
+    padding: 20px; /* Add padding to the main content */
+}

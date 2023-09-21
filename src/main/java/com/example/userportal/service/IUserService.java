@@ -38,4 +38,6 @@ public interface IUserService {
     User findById(Long id);
 
     UserDto convertEntityToDto(User user);
+
+    boolean passwordsMatch(String oldPassword, String password);
 }

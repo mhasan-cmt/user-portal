@@ -77,4 +77,9 @@ public class IUserServiceImpl implements IUserService {
         userDto.setAge(BirthDateUtil.calculateAge(userDto.getBirthDate()));
         return userDto;
     }
+
+    @Override
+    public boolean passwordsMatch(String oldPassword, String password) {
+        return passwordEncoder.matches(oldPassword, password);
+    }
 }

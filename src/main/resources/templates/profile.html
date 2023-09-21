@@ -6,9 +6,6 @@
 <div class="container" layout:fragment="content">
     <div class="row col-md-8 offset-md-2">
         <div class="card">
-            <div th:if="${param.success}">
-                <div class="alert alert-info">Edited Successfully!</div>
-            </div>
             <div class="card-header">
                 <h2 class="text-center h5 text-dark">User Profile</h2>
             </div>
@@ -16,7 +13,7 @@
                 <form method="post" role="form" th:object="${user}">
 
                     <div class="form-group mb-3">
-                        <label class="form-label">First Name <span style="color: crimson">*</span></label>
+                        <label class="form-label">First Name</label>
                         <input class="form-control"
                                id="firstName"
                                name="firstName"
@@ -28,7 +25,7 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label class="form-label">Last Name <span style="color: crimson">*</span></label>
+                        <label class="form-label">Last Name</label>
                         <input class="form-control"
                                id="lastName"
                                name="lastName"
@@ -39,7 +36,7 @@
                         />
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label">Address<span style="color: crimson">*</span></label>
+                        <label class="form-label">Address</label>
                         <input class="form-control"
                                id="address"
                                name="address"
@@ -50,7 +47,7 @@
                         />
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label">Email <span style="color: crimson">*</span></label>
+                        <label class="form-label">Email</label>
                         <input class="form-control"
                                id="email"
                                name="email"
@@ -60,7 +57,7 @@
                         />
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label">Birth Date <span style="color: crimson">*</span></label>
+                        <label class="form-label">Birth Date</label>
                         <input class="form-control"
                                id="birthDate"
                                name="birthDate"
@@ -70,7 +67,7 @@
                         />
                     </div>
                     <div class="form-group mb-3">
-                        <label class="form-label" for="phone">Phone <span style="color: crimson">*</span></label>
+                        <label class="form-label" for="phone">Phone</label>
                         <input class="form-control"
                                id="phone"
                                name="phone"

@@ -1,5 +1,6 @@
 package com.example.userportal.controller;
 
+import com.example.userportal.dto.ChangePasswordDto;
 import com.example.userportal.dto.UserDto;
 import com.example.userportal.entity.User;
 import com.example.userportal.service.IUserService;
@@ -7,6 +8,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 public class AuthController {
 
     private final IUserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/")
     public String home(Model model, Authentication authentication, @AuthenticationPrincipal User userDetails) {
@@ -71,5 +74,27 @@ public class AuthController {
     public String findAllUsers(Model model) {
         model.addAttribute("users", userService.findAllUsers());
        return "users-list";
+    }
+    @GetMapping("/change-password")
+    public String loadChangePasswordPage(Model model) {
+        model.addAttribute("changePassword", new ChangePasswordDto());
+        return "change-password";
+    }
+    @PostMapping("/change-password")
+    public String changePassword(Model model, @Valid @ModelAttribute("changePassword") ChangePasswordDto changePasswordDto,
+                                 BindingResult result, Authentication authentication) {
+        User user = userService.findByEmail(authentication.getName());
+        if (!userService.passwordsMatch(changePasswordDto.getOldPassword(), user.getPassword())) {
+            result.rejectValue("oldPassword", null, "Old password is incorrect");
+        } else if (!changePasswordDto.getNewPassword().equals(changePasswordDto.getConfirmPassword())) {
+            result.rejectValue("confirmPassword", null, "Passwords do not match");
+        }
+        if (result.hasErrors()) {
+            model.addAttribute("changePassword", changePasswordDto);
+            return "change-password";
+        }
+        user.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
+        userService.update(user);
+        return "redirect:/change-password?success";
     }
 }

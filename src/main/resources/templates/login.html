@@ -13,7 +13,7 @@
 <body>
 <div class="row my-5">
     <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-4 offset-md-4">
             <div th:if="${param.error}">
                 <div class="alert alert-danger">Invalid Email and Password.</div>
             </div>
@@ -22,7 +22,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <h3 class="text-center">Login</h3>
+                    <h3 class="text-center">Login Panel</h3>
                 </div>
                 <div class="card-body">
                     <form
@@ -57,9 +57,10 @@
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="reset" class="btn btn-secondary">Clear</button>
                             <span> Don't have an account?
                             <a th:href="@{/register}"> Register Here</a>
-                        </span>
+                            </span>
                         </div>
                     </form>
                 </div>

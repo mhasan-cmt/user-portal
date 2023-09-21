@@ -23,7 +23,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
-    private static final String[] userURLs = {"/service/prev", "/service/new"};
 
     /**
      * This method is used to configure the password encoder.
@@ -46,11 +45,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) ->
-                        authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/").permitAll()
-                                .requestMatchers(userURLs).hasRole("USER")
+                        authorize.requestMatchers("/register/**", "/").permitAll()
                                 .requestMatchers("/users").hasRole("ADMIN")
-                                .requestMatchers("/profile").authenticated()
+                                .anyRequest().authenticated()
 
                 ).formLogin(
                         form -> form
