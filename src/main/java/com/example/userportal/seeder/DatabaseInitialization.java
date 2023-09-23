@@ -66,7 +66,7 @@ public class DatabaseInitialization implements ApplicationRunner {
             userDto.setEmail("admin@mail.com");
             userDto.setBirthDate(LocalDate.now());
             userDto.setPhone("01722680407");
-            userDto.setPassword(passwordEncoder.encode("admin"));
+            userDto.setPassword("admin");
             userDto.setAddress("Dhaka");
             userDto.setRoleName(RoleName.ROLE_ADMIN);
             userService.saveUser(userDto);
